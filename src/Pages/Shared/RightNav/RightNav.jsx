@@ -3,7 +3,7 @@ import React from 'react';
 const RightNav = () => {
     return (
         <div>
-            <p>Right nav</p>
+            <h2 className='font-bold text-xl'>All Caterogy</h2>
         </div>
     );
 };
