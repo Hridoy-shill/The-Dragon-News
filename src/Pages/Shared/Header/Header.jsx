@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo.png'
+import logo from '../../../assets/logo.png'
 import moment from 'moment';
 import Marquee from "react-fast-marquee";
 import { Link } from 'react-router-dom';
