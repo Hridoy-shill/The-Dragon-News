@@ -8,6 +8,7 @@ const CategoryNews = () => {
     console.log(categoriesData);
     return (
         <div>
+            <h1 className='font-bold text-xl mb-8'>Dragon News Home</h1>
             {
                 categoriesData.map(categoryData =><NewsCard key={categoryData._id} categoryData={categoryData}></NewsCard>)
             }
