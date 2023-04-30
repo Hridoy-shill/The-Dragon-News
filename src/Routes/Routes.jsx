@@ -16,12 +16,12 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <CategoryNews></CategoryNews>,
-                loader: () => fetch('http://localhost:5000/news')
+                loader: () => fetch('https://the-dragon-news-server-hridoy-shill.vercel.app/news')
             },
             {
                 path: '/category/:id',
                 element: <CategoryNews></CategoryNews>,
-                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+                loader: ({ params }) => fetch(`https://the-dragon-news-server-hridoy-shill.vercel.app/categories/${params.id}`)
             },
 
         ]
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             {
                 path: ':id',
                 element: <PrivateRoute><NewsDetails></NewsDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
+                loader: ({ params }) => fetch(`https://the-dragon-news-server-hridoy-shill.vercel.app/news/${params.id}`)
             }
         ]
     },

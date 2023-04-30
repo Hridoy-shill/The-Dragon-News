@@ -5,7 +5,7 @@ import NewsCard from '../NewsCard/NewsCard';
 const CategoryNews = () => {
     const {id} = useParams()
     const categoriesData = useLoaderData()
-    console.log(categoriesData);
+    // console.log(categoriesData);
     return (
         <div>
             <h1 className='font-bold text-xl mb-8'>Dragon News Home</h1>
