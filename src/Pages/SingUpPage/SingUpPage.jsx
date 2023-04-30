@@ -8,12 +8,12 @@ const SingUpPage = () => {
 
     const handleRegister = (event) =>{
         event.preventDefault()
-        const from = event.target;
-        const email = from.email.value;
-        const name = from.name.value;
-        const photo = from.photo.value;
-        const password = from.password.value;
-        const checkbox = from.checkbox.value;
+        const form = event.target;
+        const email = form.email.value;
+        const name = form.name.value;
+        const photo = form.photo.value;
+        const password = form.password.value;
+        const checkbox = form.checkbox.value;
 
         console.log(email, name, photo, password, checkbox);
 
@@ -21,6 +21,7 @@ const SingUpPage = () => {
         .then(result =>{
             const createdUser = result.user;
             console.log(createdUser);
+            form.reset()
         })
         .catch(error =>{
             console.log(error);

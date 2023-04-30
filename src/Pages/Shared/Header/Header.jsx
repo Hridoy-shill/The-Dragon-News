@@ -6,8 +6,14 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Header = () => {
-    const {user} = useContext(AuthContext)
-    const {displayName} = user;
+    const {user, logOutUser} = useContext(AuthContext)
+    
+    const handleLogOut = () =>{
+        logOutUser()
+        .then()
+        .catch(error => console.log(error));
+    }
+
     return (
         <div>
             <img src={logo} alt="" className='mx-auto pt-3 w-96' />
@@ -22,7 +28,7 @@ const Header = () => {
 
             {/* navbar */}
             <div className='md:flex md:justify-between md:items-center mx-10 mt-4'>
-                {user ? <div className='w-full'>{displayName}</div> : ''}
+                <div className='w-full'></div>
                 <div className='space-x-4 text-base w-full font-semibold text-gray-500'>
                     <Link to={'/'}>Home</Link>
                     <Link to={'/'}>About</Link>
@@ -35,8 +41,8 @@ const Header = () => {
                         </div>
                     </label>
                     {
-                        user.displayName ?
-                        <button className="px-8 py-1 bg-slate-800 text-white font-semibold text-lg rounded">logout</button> :
+                        user ?
+                        <button onClick={handleLogOut} className="px-8 py-1 bg-slate-800 text-white font-semibold text-lg rounded">logout</button> :
                         <Link to={'/login'}><button className="px-8 py-1 bg-slate-800 text-white font-semibold text-lg rounded">Login</button></Link>
                     }
                 </div>

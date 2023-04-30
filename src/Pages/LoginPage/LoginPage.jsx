@@ -1,11 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
-
+import logo from '../../assets/logo.png'
 
 const LoginPage = () => {
     const [error, setError] = useState({})
-    const {logInUser} = useContext(AuthContext)
+    const {logInUser, user, logOutUser} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location);
+    const from = location.state?.from?.pathname || '/category/0'
     
     const handleLogIn = event =>{
         event.preventDefault();
@@ -14,18 +18,46 @@ const LoginPage = () => {
         const password = form.password.value;
 
         console.log(email, password);
+
         logInUser(email, password)
         .then(result =>{
             const loggedUser = result.user;
             console.log(loggedUser);
+            navigate(from, {replace: true})
+            form.reset()
         })
         .catch(error =>{
             setError(error);
         })
     }
+    const handleLogOut = () =>{
+        logOutUser()
+        .then()
+        .catch(error => console.log(error));
+    }
     return (
-        <div className='w-full mt-32 p-5'>
-            <Form onSubmit={handleLogIn} className='w-2/4 mx-auto'>
+        <div>
+             <div className='md:flex md:justify-between md:items-center mx-10 mt-4'>
+                <div className='w-full'></div>
+                <div className='space-x-4 text-base w-full font-semibold text-gray-500'>
+                    <Link to={'/'}>Home</Link>
+                    <Link to={'/'}>About</Link>
+                    <Link to={'/'}>Career</Link>
+                </div>
+                <div className='flex items-center gap-3'>
+                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
+                            <img src={logo} />
+                        </div>
+                    </label>
+                    {
+                        user ?
+                        <button  onClick={handleLogOut} className="px-8 py-1 bg-slate-800 text-white font-semibold text-lg rounded">logout</button> :
+                        <Link to={'/login'}><button className="px-8 py-1 bg-slate-800 text-white font-semibold text-lg rounded">Login</button></Link>
+                    }
+                </div>
+            </div>
+            <Form onSubmit={handleLogIn} className='w-2/4 mx-auto mt-32'>
                 <p className='text-3xl font-bold border-black pb-6 text-center '>Login your account</p>
                 <hr />
                 <div className='flex flex-col my-3'>
