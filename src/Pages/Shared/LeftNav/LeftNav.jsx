@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa';
 import { FaFacebook } from 'react-icons/fa';
@@ -8,15 +8,40 @@ import qZone1 from '../../../assets/qZone1.png'
 import qZone2 from '../../../assets/qZone2.png'
 import qZone3 from '../../../assets/qZone3.png'
 import bgImg from '../../../assets/bg.png'
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const LeftNav = () => {
+    const {logInWithGoogle, logInWithGithub} = useContext(AuthContext)
+
+    const handleGoogleLogin = () =>{
+        logInWithGoogle()
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+    }
+
+    const handleGithubLogin = () =>{
+        logInWithGithub()
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+    }
+
     return (
         <div>
             <div>
                 <h2 className='font-bold text-xl'>Login with</h2>
                 <div className='text-center mt-5'>
-                    <button className="btn btn-outline px-11 w-full font-bold"><FaGoogle className='me-1 w-4 h-4'></FaGoogle>Login with Google</button>
-                    <button className="btn btn-outline btn-primary w-full px-11 my-3 font-bold"><FaGithub className='me-1 w-4 h-4'></FaGithub>Login with GitHub</button>
+                    <button onClick={handleGoogleLogin} className="btn btn-outline px-11 w-full font-bold"><FaGoogle className='me-1 w-4 h-4'></FaGoogle>Login with Google</button>
+                    <button onClick={handleGithubLogin} className="btn btn-outline btn-primary w-full px-11 my-3 font-bold"><FaGithub className='me-1 w-4 h-4'></FaGithub>Login with GitHub</button>
                 </div>
             </div>
 

@@ -11,13 +11,13 @@ const Main = () => {
         <>
             <Header></Header>
             <div className='grid grid-cols-4 gap-3 mt-12 mx-10'>
-                <div >
+                <div className='sticky'>
                     <RightNav></RightNav>
                 </div>
                 <div className='col-span-2'>
                     <Outlet></Outlet>
                 </div>
-                <div >
+                <div className='sticky'>
                     <LeftNav></LeftNav>
                 </div>
             </div>
